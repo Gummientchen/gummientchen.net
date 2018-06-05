@@ -19,6 +19,8 @@ class ComposerStaticInitb4f76d074b658ce911d2a5360d4cb604
         'M' => 
         array (
             'Monolog\\' => 8,
+            'MatthiasMullie\\PathConverter\\' => 29,
+            'MatthiasMullie\\Minify\\' => 22,
         ),
         'I' => 
         array (
@@ -47,6 +49,14 @@ class ComposerStaticInitb4f76d074b658ce911d2a5360d4cb604
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'MatthiasMullie\\PathConverter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/matthiasmullie/path-converter/src',
+        ),
+        'MatthiasMullie\\Minify\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/matthiasmullie/minify/src',
         ),
         'Intervention\\Httpauth\\' => 
         array (
