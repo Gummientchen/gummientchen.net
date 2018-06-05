@@ -58,90 +58,58 @@ html,body{
 .container{
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: $break-base/2 auto auto auto;
+	grid-template-rows: $break-base/2 auto;
 	grid-gap:3em 0;
-	grid-template-areas: 
-		"logo"
-		"gamertags"
-		"rig"
-		"footer";
+	padding-bottom:3em;
 }
 
 header{
-	grid-area:logo;
 	text-align:center;
 	font-size:$headerSize;
 	padding:1em;
 	color:$headerColor;
 	font-weight:500;
 	line-height:1;
-	/* background-image:
-		linear-gradient(to bottom, rgba(240, 240, 240, 0.75) 0%, rgba(240, 240, 240, 0.75) 3em, rgba(240, 240, 240, 0) 4em),
-		url(../images/logo.svg); */
 	background-repeat: no-repeat;
 	background-position: center 30%;
 	background-size: cover;
 }
 
-#smallHeader{
-	display:flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	align-items: center;
-	justify-content: space-between;
-
-	background-color: $rigBackground;
-
-	position: fixed;
-	top:-250px;
-	left:0;
-	width:100%;
-	font-size: 16px;
-	z-index:100;
-	color:$lightColor;
-
-	box-sizing: border-box;
-
-	text-align: center;
-
-	transition: top 0.25s ease-in-out;
-	box-shadow:0 3px 4px 0 rgba(0,0,0,0.14),0 3px 3px -2px rgba(0,0,0,0.2),0 1px 8px 0 rgba(0,0,0,0.12);
-
-	padding: 0.5em;
-
-	img{
-		max-width: 40%;
-		max-height:2em;
-	}
-
-	img, div{
-		display: flex;
-	}
-
-	&.fixedHeader{
-		top: 0;
-	}
-}
-
 section{
 	padding:0 1em;
-}
 
-section.gamertags{
-	grid-area:gamertags;
+	&.grid{
+		.cards{
+			display:grid;
+			grid-template-columns:1fr;
+			grid-gap:2em;
+		}
 
-	.gamerGrid{
-		display:grid;
-		grid-template-columns:1fr;
-		grid-gap:2em;
+		h1{
+			font-size:$gamerTagsHeader;
+			font-weight:400;
+			line-height:ceil($gamerTagsHeader*1.3);
+			opacity:.5;
+			margin-top:0;
+		}
 	}
 
-	h1{
-		font-size:$gamerTagsHeader;
-		font-weight:400;
-		line-height:ceil($gamerTagsHeader*1.3);
-		opacity:.5;
-		margin-top:0;
+	&.rig{
+		background-color:$rigBackground;
+		color:$lightColor;
+		font-weight:300;
+
+		h1{
+			font-size:$rigHeaderSize;
+			line-height:ceil($rigHeaderSize*0.9);
+			font-weight:300;
+		}
+
+		a{
+			color:$linkHover;
+			fill:$linkHover;
+			margin:2em 0;
+		}
 	}
 }
 
@@ -221,27 +189,7 @@ a.button.bright{
 	fill:$lightColor;
 }
 
-section.rig{
-	grid-area:rig;
-	background-color:$rigBackground;
-	color:$lightColor;
-	font-weight:300;
-
-	h1{
-		font-size:$rigHeaderSize;
-		line-height:ceil($rigHeaderSize*0.9);
-		font-weight:300;
-	}
-
-	a{
-		color:$linkHover;
-		fill:$linkHover;
-		margin:2em 0;
-	}
-}
-
 footer{
-	grid-area:footer;
 	color:$footerColor;
 	font-weight:300;
 	padding:0 2em 2em;
@@ -273,56 +221,62 @@ table{
 @media (min-width: ceil($break-small*$break-base)){
 	.container{
 		grid-template-columns: 1fr;
-		grid-template-rows: ceil($break-small*$break-base/16*9) auto auto auto;
-	}
-
-	section.gamertags .gamerGrid{
-		grid-template-columns:1fr 1fr;
+		grid-template-rows: ceil($break-small*$break-base/16*9) auto;
 	}
 
 	header{
-		background-position: 50% 30%;
-	}
-}
-
-@media (min-width: ceil($break-mid*$break-base)) {
-	.container{
-		grid-template-columns: 1fr $break-mid*$break-base*0.8 1fr;
-		grid-template-rows: ceil($break-mid*$break-base/16*9) auto auto auto;
-		grid-template-areas: 
-			"logo logo logo"
-			". gamertags ."
-			"rig rig rig"
-			"footer footer footer";
-	}
-
-	header{
-		font-size:$headerSize*$break-mid;
 		background-position: 50% 30%;
 	}
 
 	section{
-		padding:0;
-	}
-
-	section.gamertags .gamerGrid{
-		grid-template-columns:1fr 1fr;
-	}
-
-	section.rig{
-		display:grid;
-		grid-template-columns:1fr ceil($break-mid*$break-base*0.8) 1fr;
-
-		div{
-			grid-area:1/2;
+		&.grid{
+			.cards{
+				grid-template-columns:1fr 1fr;
+			}
 		}
+	}
+
+}
+
+@media (min-width: ceil($break-mid*$break-base)) {
+	.container{
+		grid-template-columns: 1fr ceil($break-mid*$break-base*0.8) 1fr;
+		grid-template-rows: ceil($break-mid*$break-base/16*9) auto;
+	}
+
+	header{
+		grid-column: 1 / span 3;
+		font-size:$headerSize*$break-mid;
+	}
+
+	section{
+		padding:0;
+
+		&.grid{
+			grid-column: 2 / span 1;
+		}
+
+		&.rig{
+			grid-column: 1 / span 3;
+			display:grid;
+			grid-template-columns:1fr ceil($break-mid*$break-base*0.8) 1fr;
+
+			div{
+				grid-area:1/2;
+			}
+		}
+	}
+
+	footer{
+		padding: 0;
+		grid-column:2 / span 1;
 	}
 }
 
 @media (min-width: ceil($break-normal*$break-base)){
 	.container{
 		grid-template-columns:1fr $break-normal*$break-base*0.8 1fr;
-		grid-template-rows:ceil($break-normal*$break-base/16*10) auto auto auto;
+		grid-template-rows:ceil($break-normal*$break-base/16*10) auto;
 	}
 
 	header{
@@ -330,49 +284,57 @@ table{
 		background-position: 50% 32%;
 	}
 
-	section.gamertags .gamerGrid{
-		grid-template-columns:1fr 1fr 1fr;
-	}
+	section{
+		&.grid{
+			.cards{
+				grid-template-columns:repeat(3, 1fr);;
+			}
+		}
 
-	section.rig{
-		grid-template-columns:1fr ceil($break-normal*$break-base*0.8) 1fr;
+		&.rig{
+			grid-template-columns:1fr ceil($break-normal*$break-base*0.8) 1fr;
+		}
 	}
 }
 
 @media (min-width: ceil($break-2k*$break-base)){
 	.container{
 		grid-template-columns:1fr ceil($break-2k*$break-base*0.8) 1fr;
-		grid-template-rows:ceil($break-2k*$break-base/16*9) auto auto auto;
+		grid-template-rows:ceil($break-2k*$break-base/16*9) auto;
 	}
 
 	header{
 		background-position: 50% 35%;
 	}
 
-	section.gamertags .gamerGrid{
-		grid-template-columns:1fr 1fr 1fr 1fr;
-	}
+	section{
+		&.grid{
+			.cards{
+				grid-template-columns:repeat(4, 1fr);
+			}
+		}
 
-	section.rig{
-		grid-template-columns:1fr ceil($break-2k*$break-base*0.8) 1fr;
+		&.rig{
+			grid-template-columns:1fr ceil($break-2k*$break-base*0.8) 1fr;
+		}
 	}
 }
 
 @media (min-width: ceil($break-4k*$break-base)){
 	.container{
 		grid-template-columns:1fr ceil($break-4k*$break-base*0.8) 1fr;
-		grid-template-rows:ceil($break-4k*$break-base/16*6) auto auto auto;
+		grid-template-rows:ceil($break-4k*$break-base/16*6) auto;
 	}
 
-	header{
-		background-position: 50% 35%;
-	}
+	section{
+		&.grid{
+			.cards{
+				grid-template-columns:repeat(6, 1fr);
+			}
+		}
 
-	section.gamertags .gamerGrid{
-		grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;
-	}
-
-	section.rig{
-		grid-template-columns:1fr ceil($break-4k*$break-base*0.8) 1fr;
+		&.rig{
+			grid-template-columns:1fr ceil($break-4k*$break-base*0.8) 1fr;
+		}
 	}
 }

@@ -22,9 +22,9 @@
 		<div class="container">
 		<header style="background-image:url('{{$content.title.backgroundUrl}}'">{{$content.title.content}}</header>
 		{{if isset($content.gamertags)}}
-		<section class="gamertags">
+		<section class="grid">
 			<h1>Gamertags.</h1>
-			<div class="gamerGrid">
+			<div class="cards">
 				{{foreach $content.gamertags gamertag}}
 				<div class="card">
 					{{include $gamertag.image}}
@@ -41,9 +41,9 @@
 		</section>
 		{{/if}}
 		{{if isset($content.socialmedia)}}
-		<section class="socialmedia">
+		<section class="grid">
 			<h1>Social.</h1>
-			<div class="gamerGrid">
+			<div class="cards">
 				{{foreach $content.socialmedia socialmedia}}
 				<div class="card">
 					{{include $socialmedia.image}}

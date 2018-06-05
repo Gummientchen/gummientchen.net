@@ -49,14 +49,18 @@ $content = array(
 			'image' => 'images/nintendo.svg',
 		),
 	),
-	// 'socialmedia' => array(
-	// 	array(
-	// 		'title' => 'YouTube',
-	// 		'name' => 'Gummientchen',
-	// 		'text' => 'Test',
-	// 		'image' => 'images/origin.svg',
-	// 	),
-	// ),
+	'socialmedia' => array(
+		array(
+			'title' => 'YouTube',
+			'name' => 'Gummientchen',
+			'text' => 'So much drama...',
+			'image' => 'images/youtube.svg',
+			'link' => array(
+				'text' => 'Channel',
+				'url' => 'https://www.youtube.com/user/steff999',
+			),
+		),
+	),
 	'specs' => array(
 		'url' => 'https://pcpartpicker.com/user/Nycxin/saved/ryrVnQ',
 		'specs' => array(
