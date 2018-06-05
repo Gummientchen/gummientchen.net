@@ -1,6 +1,6 @@
 <?
 
-require_once("min/lib/Minify/HTML.php");
+require __DIR__ . '/vendor/autoload.php';
 
 $content = file_get_contents('index.max.html');
 $cssMain = file_get_contents('css/main.css');
