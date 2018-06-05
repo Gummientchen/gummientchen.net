@@ -1,0 +1,387 @@
+// Breakpoints
+$break-base: 768px;
+$break-small: 1;			// 768px
+$break-mid: 1.333333;		// 1024px
+$break-normal: 1.875;		// 1440px
+$break-2k: 3.333333;		// 2560px
+$break-4k: 5;				// 3840px
+
+// Sizes
+$fontSize: 12px;
+
+$headerSize: ceil($fontSize*2.16);		// 26px
+$gamerTagsHeader: ceil($fontSize*2.83);	// 34px
+$rigHeaderSize: ceil($fontSize*3.75);	// 46px
+
+// Colors
+$lightColor: #fff;
+$linkHover: #18a;
+$headerColor: #677;
+$buttonBackground: rgba(158,158,158,0.20);
+
+$linkPrimary: darken($linkHover, 15%);
+$rigBackground: saturate(darken($headerColor, 20%), 5%); // #344;
+$footerColor: $headerColor;
+
+// Misc.
+$minButtonWidth: ceil($fontSize*5);
+
+
+
+@media all and (-ms-high-contrast:none){
+	.card > svg{
+		display: none;
+	}
+
+	.card, section, footer{
+		margin-top:ceil($fontSize*1.33);
+	}
+
+	section.rig{
+		padding:1em;
+	}
+
+	section.gamertags{
+		padding:1em;
+	}
+
+}
+
+html,body{
+	margin:0;
+}
+
+*{
+	font-family: sans-serif;
+}
+
+.container{
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: $break-base/2 auto auto auto;
+	grid-gap:3em 0;
+	grid-template-areas: 
+		"logo"
+		"gamertags"
+		"rig"
+		"footer";
+}
+
+header{
+	grid-area:logo;
+	text-align:center;
+	font-size:$headerSize;
+	padding:1em;
+	color:$headerColor;
+	font-weight:500;
+	line-height:1;
+	/* background-image:
+		linear-gradient(to bottom, rgba(240, 240, 240, 0.75) 0%, rgba(240, 240, 240, 0.75) 3em, rgba(240, 240, 240, 0) 4em),
+		url(../images/logo.svg); */
+	background-repeat: no-repeat;
+	background-position: center 30%;
+	background-size: cover;
+}
+
+#smallHeader{
+	display:flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: space-between;
+
+	background-color: $rigBackground;
+
+	position: fixed;
+	top:-250px;
+	left:0;
+	width:100%;
+	font-size: 16px;
+	z-index:100;
+	color:$lightColor;
+
+	box-sizing: border-box;
+
+	text-align: center;
+
+	transition: top 0.25s ease-in-out;
+	box-shadow:0 3px 4px 0 rgba(0,0,0,0.14),0 3px 3px -2px rgba(0,0,0,0.2),0 1px 8px 0 rgba(0,0,0,0.12);
+
+	padding: 0.5em;
+
+	img{
+		max-width: 40%;
+		max-height:2em;
+	}
+
+	img, div{
+		display: flex;
+	}
+
+	&.fixedHeader{
+		top: 0;
+	}
+}
+
+img.b-lazy {
+    transition: opacity 500ms ease-in-out;
+    max-width: 100%;
+    opacity: 0;
+}
+img.b-lazy.b-loaded {
+    opacity: 1;
+}
+
+section{
+	padding:0 1em;
+}
+
+section.gamertags{
+	grid-area:gamertags;
+
+	.gamerGrid{
+		display:grid;
+		grid-template-columns:1fr;
+		grid-gap:2em;
+	}
+
+	h1{
+		font-size:$gamerTagsHeader;
+		font-weight:400;
+		line-height:ceil($gamerTagsHeader*1.3);
+		opacity:.5;
+		margin-top:0;
+	}
+}
+
+.card{
+	background:#fff;
+	box-shadow:0 3px 4px 0 rgba(0,0,0,0.14),0 3px 3px -2px rgba(0,0,0,0.2),0 1px 8px 0 rgba(0,0,0,0.12);
+	border-radius:2px;
+	overflow:hidden;
+	transform: scale(1);
+	transition: transform 0.1s ease-in-out;
+
+	p{
+		letter-spacing:ceil($gamerTagsHeader*1.3)/100;
+	}
+
+	h2,p{
+		padding:0 10px;
+		font-weight:300;
+	}
+}
+
+.card:hover{
+	transition: transform 0.1s ease-in-out;
+	transform: scale(1.05);
+	z-index:50;
+}
+
+.card > svg{
+	width:100%;
+	height:auto;
+	overflow:hidden;
+}
+
+img {
+	opacity: 1;
+	transition: opacity 0.25s;
+}
+
+img[data-src] {
+	opacity: 0;
+}
+
+a{
+	color:$linkPrimary;
+}
+
+a:hover{
+	color:$linkHover;
+}
+
+a.button{
+	text-decoration:none;margin:0 10px 10px;
+	text-transform:uppercase;color:$linkPrimary;
+	fill:$linkPrimary;
+	border-radius:2px;
+	height:2em;
+	min-width:$minButtonWidth;
+	padding:0 1em;
+	font-weight:500;
+	letter-spacing:0;
+	overflow:hidden;
+	cursor:pointer;
+	text-align:center;
+	line-height:2em;
+	vertical-align:middle;
+	display:inline-block;
+}
+
+a.button:hover{
+	color:$linkHover;
+	fill:$linkHover;
+	background:$buttonBackground;
+}
+
+a.button.bright{
+	color:$lightColor;
+	fill:$lightColor;
+}
+
+section.rig{
+	grid-area:rig;
+	background-color:$rigBackground;
+	color:$lightColor;
+	font-weight:300;
+
+	h1{
+		font-size:$rigHeaderSize;
+		line-height:ceil($rigHeaderSize*0.9);
+		font-weight:300;
+	}
+
+	a{
+		color:$linkHover;
+		fill:$linkHover;
+		margin:2em 0;
+	}
+}
+
+footer{
+	grid-area:footer;
+	color:$footerColor;
+	font-weight:300;
+	padding:0 2em 2em;
+
+	a{
+		text-decoration:none;
+	}
+}
+
+table{
+	width:100%;
+
+	td:first-child{
+		text-align:right;
+		padding-right:2em;
+	}
+
+	td{
+		border-top:1px dashed $lightColor;
+		vertical-align:top;
+		padding:.5em 0;
+	}
+
+	tr:first-child td{
+		border-top:none;
+	}
+}
+
+@media (min-width: ceil($break-small*$break-base)){
+	.container{
+		grid-template-columns: 1fr;
+		grid-template-rows: ceil($break-small*$break-base/16*9) auto auto auto;
+	}
+
+	section.gamertags .gamerGrid{
+		grid-template-columns:1fr 1fr;
+	}
+
+	header{
+		background-position: 50% 30%;
+	}
+}
+
+@media (min-width: ceil($break-mid*$break-base)) {
+	.container{
+		grid-template-columns: 1fr $break-mid*$break-base*0.8 1fr;
+		grid-template-rows: ceil($break-mid*$break-base/16*9) auto auto auto;
+		grid-template-areas: 
+			"logo logo logo"
+			". gamertags ."
+			"rig rig rig"
+			"footer footer footer";
+	}
+
+	header{
+		font-size:$headerSize*$break-mid;
+		background-position: 50% 30%;
+	}
+
+	section{
+		padding:0;
+	}
+
+	section.gamertags .gamerGrid{
+		grid-template-columns:1fr 1fr;
+	}
+
+	section.rig{
+		display:grid;
+		grid-template-columns:1fr ceil($break-mid*$break-base*0.8) 1fr;
+
+		div{
+			grid-area:1/2;
+		}
+	}
+}
+
+@media (min-width: ceil($break-normal*$break-base)){
+	.container{
+		grid-template-columns:1fr $break-normal*$break-base*0.8 1fr;
+		grid-template-rows:ceil($break-normal*$break-base/16*10) auto auto auto;
+	}
+
+	header{
+		font-size:$headerSize*$break-normal;
+		background-position: 50% 32%;
+	}
+
+	section.gamertags .gamerGrid{
+		grid-template-columns:1fr 1fr 1fr;
+	}
+
+	section.rig{
+		grid-template-columns:1fr ceil($break-normal*$break-base*0.8) 1fr;
+	}
+}
+
+@media (min-width: ceil($break-2k*$break-base)){
+	.container{
+		grid-template-columns:1fr ceil($break-2k*$break-base*0.8) 1fr;
+		grid-template-rows:ceil($break-2k*$break-base/16*9) auto auto auto;
+	}
+
+	header{
+		background-position: 50% 35%;
+	}
+
+	section.gamertags .gamerGrid{
+		grid-template-columns:1fr 1fr 1fr 1fr;
+	}
+
+	section.rig{
+		grid-template-columns:1fr ceil($break-2k*$break-base*0.8) 1fr;
+	}
+}
+
+@media (min-width: ceil($break-4k*$break-base)){
+	.container{
+		grid-template-columns:1fr ceil($break-4k*$break-base*0.8) 1fr;
+		grid-template-rows:ceil($break-4k*$break-base/16*6) auto auto auto;
+	}
+
+	header{
+		background-position: 50% 35%;
+	}
+
+	section.gamertags .gamerGrid{
+		grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;
+	}
+
+	section.rig{
+		grid-template-columns:1fr ceil($break-4k*$break-base*0.8) 1fr;
+	}
+}
