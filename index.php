@@ -1,19 +1,19 @@
-<?
-
+<?php
 require __DIR__ . '/vendor/autoload.php';
 
 $dwoo = new Dwoo\Core();
-$tpl = new Dwoo\Template\File('index.max.tpl');
+$compiler = new \Dwoo\Compiler();
+$compiler->setDelimiters("{{", "}}");
+
+$tpl = new Dwoo\Template\File('index.max.html');
 
 $data = new Dwoo\Data();
 // Fill it with some data
 $data->assign('foo', 'BAR');
 $data->assign('bar', 'BAZ');
 
-$content = $dwoo->get($tpl, $data);
-$cssMain = file_get_contents('css/main.css');
+$content = $dwoo->get($tpl, $data, $compiler);
 
-$content = str_replace("%mainCSS%", $cssMain, $content);
 $content = \Minify_HTML::minify($content);
 
 
