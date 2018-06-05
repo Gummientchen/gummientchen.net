@@ -1,13 +1,9 @@
 <?php
-/**
- * Sets up MinApp controller and serves files
- * 
- * DO NOT EDIT! Configure this utility via config.php and groupsConfig.php
- * 
- * @package Minify
- */
+// template file for creating your own Minify endpoint
 
-$app = (require __DIR__ . '/bootstrap.php');
-/* @var \Minify\App $app */
 
+// adjust this path as necessary
+require __DIR__ . '/../vendor/autoload.php';
+
+$app = new \Minify\App(__DIR__);
 $app->runServer();
