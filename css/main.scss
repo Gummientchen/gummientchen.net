@@ -123,15 +123,6 @@ header{
 	}
 }
 
-img.b-lazy {
-    transition: opacity 500ms ease-in-out;
-    max-width: 100%;
-    opacity: 0;
-}
-img.b-lazy.b-loaded {
-    opacity: 1;
-}
-
 section{
 	padding:0 1em;
 }
