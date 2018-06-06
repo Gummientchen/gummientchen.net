@@ -11,6 +11,10 @@ class ComposerStaticInitb4f76d074b658ce911d2a5360d4cb604
         array (
             'tubalmartin\\CssMin\\' => 19,
         ),
+        'R' => 
+        array (
+            'RedBeanPHP\\' => 11,
+        ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
@@ -37,6 +41,10 @@ class ComposerStaticInitb4f76d074b658ce911d2a5360d4cb604
         'tubalmartin\\CssMin\\' => 
         array (
             0 => __DIR__ . '/..' . '/tubalmartin/cssmin/src',
+        ),
+        'RedBeanPHP\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gabordemooij/redbean/RedBeanPHP',
         ),
         'Psr\\Log\\' => 
         array (

@@ -3,17 +3,16 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="description" content="{{$content.header.description}}">
+		<meta name="description" content="{{$header.description}}">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 		
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 		<link rel="manifest" href="/manifest.json">
-		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-		<link rel="preload" href="{{$content.title.backgroundUrl}}" as="image">
-		<meta name="theme-color" content="{{$content.header.themeColor}}">
-		<title>{{$content.header.title}}</title>
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="{{$header.maskIconColor}}">
+		<meta name="theme-color" content="{{$header.themeColor}}">
+		<title>{{$header.title}}</title>
 		<style type="text/css" media="screen">
 			{{includeMinifiedCSS "css/fonts.css"}}
 			{{includeMinifiedCSS "css/main.css"}}
@@ -21,68 +20,51 @@
 	</head>
 	<body>
 		<div class="container">
-		<header style="background-image:url('{{$content.title.backgroundUrl}}'">{{$content.title.content}}</header>
-		{{if isset($content.gamertags)}}
-		<section class="grid">
-			<h1>Gamertags.</h1>
-			<div class="cards">
-				{{foreach $content.gamertags gamertag}}
-				<div class="card">
-					{{include $gamertag.image}}
-					<h2>{{$gamertag.title}}: {{$gamertag.gamertag}}</h2>
-					<p>{{$gamertag.text}}</p>
-					{{if isset($gamertag.link)}}
-					<a class="button" target="_blank" rel="noopener" href="{{$gamertag.link.url}}">
-						{{$gamertag.link.text}} {{include "assets/arrow-r.svg"}}
-					</a>
-					{{/if}}
+		<header style="background-image:url('{{$content.backgroundUrl}}'">{{$content.content}}</header>
+		{{if isset($sections)}}
+			{{foreach $sections section}}
+			<section class="grid">
+				<h1>{{$section.title}}.</h1>
+				<div class="cards">
+					{{foreach $section.cards card}}
+					<div class="card">
+						{{$card.image}}
+						<h2>{{$card.title}}: {{$card.tag}}</h2>
+						<p>{{$card.text}}</p>
+						{{if isset($card.linktext)}}
+						<a class="button" target="_blank" rel="noopener" href="{{$card.linkurl}}">
+							{{$card.linktext}} {{include "assets/arrow-r.svg"}}
+						</a>
+						{{/if}}
+					</div>
+					{{/foreach}}
 				</div>
-				{{/foreach}}
-			</div>
-		</section>
+			</section>
+			{{/foreach}}
 		{{/if}}
-		{{if isset($content.socialmedia)}}
-		<section class="grid">
-			<h1>Social.</h1>
-			<div class="cards">
-				{{foreach $content.socialmedia socialmedia}}
-				<div class="card">
-					{{include $socialmedia.image}}
-					<h2>{{$socialmedia.title}}: {{$socialmedia.name}}</h2>
-					<p>{{$socialmedia.text}}</p>
-					{{if isset($socialmedia.link)}}
-					<a class="button" target="_blank" rel="noopener" href="{{$socialmedia.link.url}}">
-						{{$socialmedia.link.text}} {{include "assets/arrow-r.svg"}}
-					</a>
-					{{/if}}
-				</div>
-				{{/foreach}}
-			</div>
-		</section>
-		{{/if}}
-		{{if isset($content.specs.specs)}}
+		{{if isset($specs)}}
 		<section class="rig dark">
 			<div>
 				<h1>Rig.</h1>
 				<table>
 					<tbody>
-						{{foreach $content.specs.specs spec}}
+						{{foreach $specs spec}}
 						<tr>
-							<td>{{$spec[0]}}</td>
-							<td>{{$spec[1]}}</td>
+							<td>{{$spec.part}}</td>
+							<td>{{$spec.text}}</td>
 						</tr>
 						{{/foreach}}
 					</tbody>
 				</table>
-				<a class="button bright" target="_blank" rel="noopener" href="{{$content.specs.url}}">
+				<a class="button bright" target="_blank" rel="noopener" href="{{$content.specsLink}}">
 					full specs {{include "assets/arrow-r.svg"}}
 				</a>
 			</div>
 		</section>
 		{{/if}}
 		<footer>
-			{{foreach $content.footer foot}}
-				{{$foot}}<br />
+			{{foreach $footers foot}}
+				{{$foot->value}}<br />
 			{{/foreach}}
 		</footer>
 	</div>
