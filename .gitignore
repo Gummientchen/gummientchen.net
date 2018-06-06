@@ -1,2 +1,3 @@
 *.bak
 /vendor/dwoo/dwoo/lib/compiled/*
+vendor/gabordemooij/redbean/
