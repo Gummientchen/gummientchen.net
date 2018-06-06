@@ -66,8 +66,19 @@ $content = array(
 			'text' => 'DRAMA!!!',
 			'image' => 'images/youtube.svg',
 			'link' => array(
-				'text' => 'Channel',
+				'text' => 'YouTube Channel',
 				'url' => 'https://www.youtube.com/user/steff999'
+			)
+		),
+		array(
+			'section' => 'Social',
+			'title' => 'Twitch',
+			'tag' => 'Gummientchen_',
+			'text' => 'Only male nipples allowed!',
+			'image' => 'images/twitch.svg',
+			'link' => array(
+				'text' => 'Twitch Channel',
+				'url' => 'https://www.twitch.tv/gummientchen_'
 			)
 		),
 	),
