@@ -19,7 +19,10 @@ $content = array(
 			'tag' => 'Gummientchen',
 			'text' => 'Praise Lord Gaben!',
 			'image' => 'images/steam.svg',
-			'link' => array('text' => 'Steam Profile', 'url' => 'http://steamcommunity.com/id/Gummientchen/')
+			'link' => array(
+				'text' => 'Steam Profile',
+				'url' => 'http://steamcommunity.com/id/Gummientchen/'
+			)
 		),
 		array(
 			'section' => 'Gamertags',
@@ -59,9 +62,13 @@ $content = array(
 		array(
 			'section' => 'Social',
 			'title' => 'YouTube',
-			'tag' => 'Gummientchen_ch',
+			'tag' => 'Gummientchen',
 			'text' => 'DRAMA!!!',
 			'image' => 'images/youtube.svg',
+			'link' => array(
+				'text' => 'Channel',
+				'url' => 'https://www.youtube.com/user/steff999'
+			)
 		),
 	),
 	// 'socialmedia' => array(
