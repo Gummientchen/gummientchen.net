@@ -87,7 +87,8 @@ $content = $dwoo->get($tpl, $data, $compiler);
 
 $content = \Minify_HTML::minify($content);
 
+file_put_contents("index.html", $content);
 
-echo $content;
+echo "updated index.html";
 
 ?>
